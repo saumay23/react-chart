@@ -15,6 +15,7 @@ const Contact = () => {
     formState: { errors },
     handleSubmit,
     setValue,
+    clearErrors,
   } = useForm<FormData>();
   const router = useRouter();
   const SubmitFormData = (data: FormData) => {
@@ -97,6 +98,7 @@ const Contact = () => {
             <CountryDropdown
               register={register}
               setValue={setValue}
+              clearErrors={clearErrors}
               errors={errors}
             />
           </div>

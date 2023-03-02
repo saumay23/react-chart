@@ -1,7 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
-import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import {
+  FieldErrors,
+  UseFormClearErrors,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
 import { FormData } from "../pages/contact";
 type CountryDropdown = {
   country: string;
@@ -11,10 +16,12 @@ const CountryDropdown = ({
   register,
   setValue,
   errors,
+  clearErrors,
 }: {
   register: UseFormRegister<FormData>;
   setValue: UseFormSetValue<FormData>;
   errors: FieldErrors<FormData>;
+  clearErrors: UseFormClearErrors<FormData>;
 }) => {
   const ref = useRef<any>(null);
   const [country, setCountry] = useState<CountryDropdown[]>([]);
@@ -82,7 +89,7 @@ const CountryDropdown = ({
                   onClick={() => {
                     setOption(data.country);
                     setValue("country", data.country);
-
+                    clearErrors("country");
                     setIsOpen(false);
                   }}
                   className="p-2 hover:bg-[#DDDDDD] cursor-pointer"
